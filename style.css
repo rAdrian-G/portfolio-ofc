@@ -1,81 +1,399 @@
-*{
+
+/* =========================================
+   01. CONFIGURAÇÕES GERAIS
+========================================= */
+
+:root {
+    /* Cores */
+    --bg-primary: #fafafa;
+    --bg-secondary: #252525;
+
+    --pink-light: #fff4fc;
+    --pink-main: #d95bcf;
+    --pink-dark: #a83c9f;
+
+    --text-primary: #252525;
+    --text-secondary: #777777;
+    --text-light: #fafafa;
+
+    --border-light: #e6e2e4;
+    --border-dark: #393939;
+
+    /* Tipografia */
+    --font-main: 'Inter', sans-serif;
+
+    /* Tamanhos */
+    --nav-height: 64px;
+    --container-width: 1100px;
+
+    /* Espaçamentos */
+    --section-padding: 100px 4.5rem;
+    --gap-small: 12px;
+    --gap-medium: 24px;
+    --gap-large: 42px;
+
+    /* Efeitos */
+    --transition: 0.25s ease;
+    --special: 0.8s ease;
+}
+
+/* =========================================
+   02. RESET E CONFIGURAÇÕES BASE
+========================================= */
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-:root{
-    --bg-claro: #fafafa;
-    --rosa-claro: #fff4fc;
-    --borda-claro: #e6e2e4;
 
-    --bg-escuro: #252525;
-    --rosa-escuro: #d95bcf;
-    --borda-escuro: #252525;
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--nav-height);
 }
 
-body{
-    background-color: var(--bg-claro);
-    position: relative;
-}
-.divisor{
-    position: relative;
-    margin: 20px 0;
+body {
+    font-family: var(--font-main);
+    color: var(--text-primary);
 
+    background: linear-gradient(
+        to bottom,
+        var(--bg-primary),
+        var(--bg-secondary)
+    );
+
+    min-height: 100vh;
 }
-.divisor::before{
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 0;
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+section {
     width: 100%;
-    height: 1px;
-    background-color: #ccc;
 }
+
+/* =========================================
+   03. NAVBAR
+========================================= */
+
 .navbar {
     width: 100%;
-    height: 58px;
+    height: var(--nav-height);
 
-    background-color: var(--rosa-claro);
-    border-bottom: 1px solid var(--borda-claro);
+    background-color: var(--pink-light);
+    border-bottom: 1px solid var(--border-light);
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-/* CONTAINER */
-
 .nav-container {
+    max-width: var(--container-width);
     height: 100%;
-    padding: 0 4.5rem;
+
+    margin: 0 auto;
+    padding: 0 2rem;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.nav-link{
-    display: inline-block;
-    align-items: center;
-    gap: 42px;
-}
+/* Logo */
 
-.nav-container > .nav-link{
-    color: #252b25;
+.nav-container > .nav-link {
+    color: var(--text-primary);
+
     font-size: 1rem;
     font-weight: 750;
-    text-decoration: none;
-}
-.nav-menu{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 42px;
-}
-.nav-menu .nav-link{
-    color: #252525;
-    font-size: 0.75rem;
-    font-weight: 450;
-    text-decoration: none;
+    letter-spacing: -0.5px;
 
-    transition: color 0.2s ease;
+    transition: var(--transition);
 }
-.nav-menu .nav-link:hover{
-    color: #d95bcf;
+
+.nav-container > .nav-link:hover {
+    color: var(--pink-main);
+}
+
+/* Menu */
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-large);
+}
+
+.nav-menu .nav-link {
+    color: var(--text-primary);
+
+    font-size: 0.8rem;
+    font-weight: 500;
+
+    transition: var(--transition);
+}
+
+.nav-menu .nav-link:hover {
+    color: var(--pink-main);
+}
+
+/* =========================================
+   04. HOME / HERO
+========================================= */
+
+.home {
+    min-height: 75vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: var(--section-padding);
+
+    background-color: var(--pink-main);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.home-container {
+    width: 100%;
+    max-width: var(--container-width);
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: var(--gap-medium);
+}
+
+/* Identificação profissional */
+
+.profession {
+    color: var(--pink-light);
+
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+/* Título */
+
+.home-container h1 {
+    color: var(--text-primary);
+
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1.1;
+}
+.home-container h1 span {
+    color: var(--pink-light);
+}
+.home-container h1 span:hover {
+    color: var(--pink-dark);
+}
+
+/* Descrição */
+
+.home-container > p {
+    max-width: 600px;
+
+    color: var(--text-primary);
+
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+/* Botões */
+
+.navbutton {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.navbutton .nav-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 13px 22px;
+
+    border: 1px solid var(--text-primary);
+    border-radius: 6px;
+
+    color: var(--text-primary);
+
+    font-size: 0.8rem;
+    font-weight: 600;
+
+    transition: var(--transition);
+}
+
+.navbutton .nav-link:first-child {
+    background-color: var(--text-primary);
+    color: var(--text-light);
+}
+
+.navbutton .nav-link:first-child:hover {
+    background-color: transparent;
+    color: var(--text-primary);
+}
+
+.navbutton .nav-link:last-child {
+    background-color: transparent;
+}
+
+.navbutton .nav-link:last-child:hover {
+    background-color: var(--text-primary);
+    color: var(--text-light);
+}
+
+/* =========================================
+   05. DIVISORES
+========================================= */
+
+.divisor {
+    position: relative;
+    width: 100%;
+    height: 1px;
+
+    margin: 20px 0;
+
+    background-color: var(--border-light);
+}
+
+/* =========================================
+   06. SOBRE MIM
+========================================= */
+
+.sobre {
+    padding: var(--section-padding);
+
+    background-color: var(--bg-primary);
+}
+
+.sobre-container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: var(--gap-medium);
+}
+
+/* Numeração da seção */
+
+.enum {
+    color: var(--pink-main);
+
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Título */
+
+.sobre-container h2 {
+    color: var(--text-primary);
+
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+/* Texto */
+
+.sobre-container p {
+    max-width: 750px;
+
+    color: var(--text-secondary);
+
+    font-size: 1rem;
+    line-height: 1.9;
+}
+
+/* =========================================
+   07. PROJETOS
+========================================= */
+
+.projects {
+    min-height: 400px;
+    padding: var(--section-padding);
+
+    background-color: var(--bg-secondary);
+    color: var(--text-light);
+}
+
+/* =========================================
+   08. RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 768px) {
+
+    :root {
+        --section-padding: 80px 1.5rem;
+        --gap-large: 20px;
+    }
+
+    .nav-container {
+        padding: 0 1.5rem;
+    }
+
+    .nav-menu {
+        gap: 16px;
+    }
+
+    .nav-menu .nav-link {
+        font-size: 0.7rem;
+    }
+
+    .home {
+        min-height: 65vh;
+    }
+
+    .home-container h1 {
+        letter-spacing: -1px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .nav-container {
+        padding: 0 1rem;
+    }
+
+    .nav-menu {
+        gap: 10px;
+    }
+
+    .nav-menu .nav-link {
+        font-size: 0.65rem;
+    }
+
+    .nav-container > .nav-link {
+        font-size: 0.85rem;
+    }
+
+    .home {
+        min-height: 60vh;
+    }
+
+    .navbutton {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .navbutton .nav-link {
+        width: 100%;
+    }
 }
